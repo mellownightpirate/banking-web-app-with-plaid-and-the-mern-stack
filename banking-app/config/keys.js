@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "YOUR_MONGOURI_HERE"
+  mongoURI:
+    "mongodb+srv://mellownightpirate:<banking-app-1568>@banking-app-cluster0-bvbzp.mongodb.net/<mellownightpirate>?retryWrites=true&w=majority",
 };
-
