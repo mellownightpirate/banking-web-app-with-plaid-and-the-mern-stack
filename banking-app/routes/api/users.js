@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config / keys");
+const keys = require("../../config/keys");
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -40,8 +40,8 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
         });
       });
     }
@@ -53,7 +53,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   // Form validation
   // Pull the erros and isValid variabls from validateLoginInput(req.body) function and check input validation
-  const { errors, isValid } = validateLoginINput(req.body);
+  const { errors, isValid } = validateLoginInput(req.body);
 
   // Check validation
   if (!isValid) {
@@ -71,7 +71,7 @@ router.post("/login", (req, res) => {
     }
 
     // Use bcryptjs to compare submitted password with hashed password in our database
-    bcrypt.compare(password, user.password).then((isMatch) => {
+    bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         // User matched
         // Create JWT Payload
