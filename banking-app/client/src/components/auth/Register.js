@@ -19,7 +19,7 @@ class Register extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    constnewUser = {
+    const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
@@ -50,12 +50,12 @@ class Register extends Component {
             </div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
-                <input>
+                <input
                   onChange={this.onChange}
                   value={this.state.name}
                   error={errors.name}
                   id="name" type="text"
-                </input>
+                />
                 <label htmlFor="name">Name</label>
               </div>
               <div className="input-field col s12">

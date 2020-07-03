@@ -13,7 +13,6 @@ class App extends Component {
       <Router>
       <div className="App">
         <Navbar />
-          <Landing />
           {/* define routing paths */}
           <Route exact path="/" component={Landing} />
           {/* E.g. render the register component at localhost:3000/register */}
