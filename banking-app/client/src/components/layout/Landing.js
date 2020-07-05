@@ -1,33 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 class Landing extends Component {
   render() {
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+      <div style={{ height: "50vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Secure</b> banking with {" "}
-              <span style={{ fontFamily: "monospace" }}>OpenBank</span>{" "}
-              to make the most of your money
+              <b>Connect</b> your bank details to {" "}
+              <span style={{ fontFamily: "monospace" }}>OpenBank</span> safely and
+              securely
             </h4>
             <p className="flow-text grey-text text-darken-1">
-              A (minimal) full-stack app for users to connect their bank accounts
+              The (easiest) way for users to connect their bank accounts to an app
             </p>
             <br />
-            <div className="col s6">
-              <Link
-                to="/register"
-                style={{ 
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px"
-                }}
-                className="btn btn-large waves-effect waves-light hoverable blue-accent-3"
-              >
-                Register
-                </Link>
+            <div className="col push-s4">
               <Link
                 to="/register"
                 style={{
@@ -35,7 +23,20 @@ class Landing extends Component {
                   borderRadius: "3px",
                   letterSpacing: "1.5px",
                 }}
-                className="btn btn-large btn-flat waves-effect white black-text"
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Register
+              </Link>
+            </div>
+            <div className="col push-s4">
+              <Link
+                to="/login"
+                style={{
+                  width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                }}
+                className="btn btn-large waves-effect waves-light hoverable white black-text"
               >
                 Log In
               </Link>
@@ -46,5 +47,4 @@ class Landing extends Component {
     );
   }
 }
-
 export default Landing;
