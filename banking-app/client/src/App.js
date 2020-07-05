@@ -10,16 +10,18 @@ import Login from "./components/auth/Login";
 class App extends Component {
   render() {
     return (
-      <Router>
-      <div className="App">
-        <Navbar />
-          {/* define routing paths */}
-          <Route exact path="/" component={Landing} />
-          {/* E.g. render the register component at localhost:3000/register */}
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-        </div>
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            {/* define routing paths */}
+            <Route exact path="/" component={Landing} />
+            {/* E.g. render the register component at localhost:3000/register */}
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </div>
         </Router>
+      </Provider>
     );
   }
 }
