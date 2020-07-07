@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "mongoose";
 
 class Register extends Component {
   constructor() {
@@ -100,4 +101,16 @@ class Register extends Component {
   }
 }
 
-export default Register;
+// mapStateToProps allows us to get our state from Redux and map it to props which we can use inside components
+// This allows us to call this.props.auth or this.props.errors within our Register component
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+// connect React component to Redux store provided by the Provider component
+export default connect(
+  mapStateToProps,
+  { registerUser }
+  // wrap Regiser with a withRouter() to redirect within an action
+)(withRouter(Register));
