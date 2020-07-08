@@ -81,6 +81,20 @@ newAccount.save().then(account => res.json(account));
 .catch(err => console.log(err)); // Plaid Error
 }
 }
-);      
+);     
+
+// DELETE api/plaid/accounts/:id
+// Delete account with given id
+// Private
+router.delete(
+  "/accounts/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Account.findById(req.params.id).then(account => {
+      // Delete account
+      account.remove().then(() => res.json({ success: true }));
+    });
+  }
+)
 
 module.exports = router;
