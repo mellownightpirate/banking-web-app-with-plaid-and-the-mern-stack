@@ -39,4 +39,48 @@ router.get(
   }
 );
 
+// POST api/plaid/accounts/add
+// Trades public token for access token and stores credentials in database
+// Private
+router.post(
+  "/accounts/add",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    PUBLIC_TOKEN = req.body.public_token;
+const userId = req.user.id;
+const institution = req.body.metadata.institution;
+    const { name, institution_id } = institution;
+if (PUBLIC_TOKEN) {
+      client
+        .exchangePublicToken(PUBLIC_TOKEN)
+        .then(exchangeResponse => {
+          ACCESS_TOKEN = exchangeResponse.access_token;
+          ITEM_ID = exchangeResponse.item_id;
+
+// Check if account already exists for specific user
+Account.findOne({
+  userId: req.user.id,
+  institutionId: institution_id
+})
+  .then(account => {
+    if (account) {
+      console.log("Account already exists");
+    } else {
+      const newAccount = new Account({
+        userId: userId,
+        accessToken: ACCESS_TOKEN,
+        itemId: ITEM_ID,
+        institutionId: institution_id,
+        institutionName: name
+      });
+newAccount.save().then(account => res.json(account));
+    }
+  })
+  .catch(err => console.log(err)); // Mongo Error
+})
+.catch(err => console.log(err)); // Plaid Error
+}
+}
+);      
+
 module.exports = router;
